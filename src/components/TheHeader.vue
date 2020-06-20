@@ -4,37 +4,23 @@
       <div class="leadin">A video archive of</div>
       <h1>Police Abuses</h1>
       <div class="leadout">{{ total }} Videos</div>
-      <incident-filter :value="city" :options="allCities" />
+      <slot />
     </center-wrapper>
   </header>
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
-
 import CenterWrapper from '@/components/CenterWrapper.vue'
 import useIncidents from '@/use/incidents'
-import IncidentFilter from '@/components/IncidentFilter.vue'
 
 export default {
   components: {
     CenterWrapper,
-    IncidentFilter,
-  },
-
-  props: {
-    city: {
-      type: String,
-      default: '',
-    },
   },
 
   setup() {
-    const { list, total } = useIncidents()
-
-    const allCities = computed(() => [...new Set([...list.value.map((i) => i.city)])].sort())
-
-    return { total, allCities }
+    const { total } = useIncidents()
+    return { total }
   },
 }
 </script>

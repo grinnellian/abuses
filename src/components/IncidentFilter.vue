@@ -2,7 +2,7 @@
   <select
     :class="$style['filter-select']"
     aria-label="Filter by location"
-    :value="value"
+    :value="valueOrDefault"
     @input="input"
   >
     <option :value="''">FILTER BY LOCATION</option>
@@ -22,6 +22,13 @@ export default {
       value: '',
     },
   },
+
+  setup(props) {
+    const valueOrDefault =
+      props.value !== '' && props.options.indexOf(props.value) === -1 ? '' : props.value
+    return { valueOrDefault }
+  },
+
   methods: {
     input(e) {
       const city = e.target.value

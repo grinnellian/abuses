@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <the-header :city="city" />
-    <div class="wrapper">
-      <incident-details />
-      <incident-list :city="city" />
-    </div>
+    <filter-header :city="city" />
+    <incident-details />
+    <incident-list :city="city" />
   </div>
 </template>
 
 <script>
 import IncidentDetails from '@/components/IncidentDetails.vue'
 import IncidentList from '@/components/IncidentList.vue'
-import TheHeader from '@/components/TheHeader.vue'
+import FilterHeader from '@/components/FilterHeader.vue'
 
 export default {
   components: {
     IncidentDetails,
     IncidentList,
-    TheHeader,
+    FilterHeader,
   },
   props: {
     city: {

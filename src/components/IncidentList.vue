@@ -1,9 +1,13 @@
 <template>
   <div :class="$style.wrapper">
     <center-wrapper>
-      <div :class="$style['filter-description']">
+      <div v-if="filteredList.length > 0" :class="$style['filter-description']">
         Showing {{ pluralize(filteredList.length, 'incident', 'incidents') }} in
         {{ selectedCityName }}
+      </div>
+      <div v-if="filteredList.length === 0" :class="$style['filter-description']">
+        No incidents found in '{{ selectedCityName }}'.
+        <router-link to="/">Click here to return home</router-link>
       </div>
 
       <ul :class="$style.list">
